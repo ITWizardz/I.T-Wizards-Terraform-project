@@ -40,14 +40,14 @@ resource "aws_instance" "web_server" {
       "sudo yum update -y",
 
       "sudo yum upgrade -y",
-      
+
       "apt install openjdk-17-jdk openjdk-17-jre",
       "sudo apt install tomcat9",
       "sudo systemctl start tomcat9",
       "sudo systemctl enable tomcat9",
 
       "sudo apt-get install -y git",
-      "sudo git clone ${webapp_repo} /var/lib/tomcat9/webapps"
+      "sudo git clone ${var.webapp_repo} /var/lib/tomcat9/webapps"
 
     ]
   }
