@@ -5,13 +5,13 @@ terraform {
       version = "5.17.0"
     }
   }
-  /*cloud {
-    organization = "dng_org"
+  cloud {
+    organization = "WMCA-2023"
 
     workspaces {
-      name = "terraform_executions"
+      name = "Aws_approval_project"
     }
-  }*/
+  }
 }
 
 # Define EC2 instance and security group
@@ -21,33 +21,25 @@ resource "aws_instance" "web_server" {
 
   vpc_security_group_ids = [aws_security_group.web_server_sg.id]
 
-#  user_data = <<-EOF
-#     #!/bin/bash
-#     yum update -y
-#     yum install -y nginx
-#     systemctl start nginx
-#     systemctl enable nginx
-#     EOF
-
-key_name = "aws_docshare"
-connection {
+  key_name = "aws_docshare"
+  connection {
 
     type = "ssh"
 
     user = "ec2-user"
 
-    private_key = file("/Users/binoymaster/Downloads/ssh_approval/aws_docshare.pem")
+    private_key = data.vault_generic_secret.secret.data["ssh_access"]
 
     host = self.public_ip
 
   }
-provisioner "remote-exec" {
+  provisioner "remote-exec" {
 
     inline = [
 
-      "sudo yum update -y",         
+      "sudo yum update -y",
 
-      "sudo yum upgrade -y",       
+      "sudo yum upgrade -y",
 
       "sudo yum install nginx -y",
 
@@ -57,8 +49,8 @@ provisioner "remote-exec" {
 
     ]
   }
-  
-    tags = {
+
+  tags = {
     Name        = "Web Server"
     Environment = lower(var.is_dev) == "yes" ? "Dev" : "Production"
   }

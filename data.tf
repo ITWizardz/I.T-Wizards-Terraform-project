@@ -7,3 +7,6 @@ data "aws_ami" "ami_number" {
   }
 }
 
+data "vault_generic_secret" "secret" {
+  path = "kv/aws_approvalproject"
+}

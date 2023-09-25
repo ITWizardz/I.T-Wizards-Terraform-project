@@ -26,7 +26,7 @@ variable "cidr_block_for_ingress" {
 
 variable "ports_list" {
   description = "Map of ports to open"
-  type        = map(object({
+  type = map(object({
     name     = string
     port     = number
     protocol = string
