@@ -37,6 +37,11 @@ variable "ports_list" {
       port     = 80,
       protocol = "tcp"
     },
+    tomcat = {
+      name     = "tomcat",
+      port     = 8080,
+      protocol = "tcp"
+    },
     https = {
       name     = "https",
       port     = 443,

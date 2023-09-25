@@ -45,7 +45,13 @@ resource "aws_instance" "web_server" {
 
       "sudo systemctl start nginx",
 
-      "sudo apt-get install -y git && sudo git clone <repository_url> /var/www/html"
+      "apt install openjdk-17-jdk openjdk-17-jre",
+      "sudo apt install tomcat9",
+      "sudo systemctl start tomcat9",
+      "sudo systemctl enable tomcat9",
+
+      "sudo apt-get install -y git",
+      "sudo git clone <repository_url> /var/lib/tomcat9/webapps/approvals"
 
     ]
   }
