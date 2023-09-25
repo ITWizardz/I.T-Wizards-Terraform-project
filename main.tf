@@ -40,11 +40,7 @@ resource "aws_instance" "web_server" {
       "sudo yum update -y",
 
       "sudo yum upgrade -y",
-
-      "sudo yum install nginx -y",
-
-      "sudo systemctl start nginx",
-
+      
       "apt install openjdk-17-jdk openjdk-17-jre",
       "sudo apt install tomcat9",
       "sudo systemctl start tomcat9",
