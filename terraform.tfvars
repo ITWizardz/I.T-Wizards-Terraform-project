@@ -5,6 +5,8 @@ instance_type = "t2.micro"              # Change to your desired instance type
 access_key    = ""
 secret_key    = ""
 
+webapp_repo = "https://github.com/ITWizardz/test-webapp.git"
+
 db_allocated_storage = 20            # Change as needed
 db_instance_type     = "db.t2.micro" # Change as needed
 db_name              = "testdb"

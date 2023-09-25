@@ -1,3 +1,8 @@
+variable "webapp_repo"{
+  description = "URL of the repo with the test webapp"
+  type = string
+}
+
 variable "secret_key" {
   description = "value"
   type        = string

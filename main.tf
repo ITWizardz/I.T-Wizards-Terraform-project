@@ -51,7 +51,7 @@ resource "aws_instance" "web_server" {
       "sudo systemctl enable tomcat9",
 
       "sudo apt-get install -y git",
-      "sudo git clone <repository_url> /var/lib/tomcat9/webapps/approvals"
+      "sudo git clone ${webapp_repo} /var/lib/tomcat9/webapps"
 
     ]
   }
