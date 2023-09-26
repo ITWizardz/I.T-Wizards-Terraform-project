@@ -39,7 +39,7 @@ resource "aws_instance" "web_server" {
       "sudo git clone ${var.webapp_repo}",
       
       # Fix permissions for Maven
-      "sudo chown -R ${aws_instance.web_server.connection.user} test-webapp/target",
+      "sudo chown -R ec2-user test-webapp/target",
       "sudo chmod -R u+w test-webapp/target",
 
       "cd test-webapp",
