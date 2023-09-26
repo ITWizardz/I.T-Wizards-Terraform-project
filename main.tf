@@ -21,7 +21,7 @@ resource "aws_instance" "web_server" {
 
   vpc_security_group_ids = [aws_security_group.web_server_sg.id]
 
-  key_name = "ssh_access"
+  key_name = "aws_docshare"
   connection {
 
     type = "ssh"
