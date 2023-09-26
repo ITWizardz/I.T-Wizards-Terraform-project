@@ -26,7 +26,7 @@ resource "aws_instance" "web_server" {
 
       "sudo yum upgrade -y",
 
-      "yum install openjdk-17-jdk", # openjdk-17-jre
+      "sudo yum install openjdk-17-jdk", # openjdk-17-jre
       "sudo yum install tomcat9",
       "sudo systemctl start tomcat9",
       "sudo systemctl enable tomcat9",
