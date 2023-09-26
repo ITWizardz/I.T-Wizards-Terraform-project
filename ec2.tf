@@ -17,7 +17,7 @@ resource "aws_instance" "web_server" {
 
   }
 
-  
+
   provisioner "remote-exec" {
 
     inline = [
@@ -28,15 +28,18 @@ resource "aws_instance" "web_server" {
 
       "yum install openjdk-17-jdk openjdk-17-jre",
       "sudo yum install tomcat9",
+
       "sudo systemctl start tomcat9",
+
       "sudo systemctl enable tomcat9",
 
       "sudo yum install -y git",
+
       "sudo git clone ${var.webapp_repo} /var/lib/tomcat9/webapps",
         
       "sudo yum install -y maven",
-      "mvn spring-boot:run"
 
+      "mvn spring-boot:run"
     ]
   }
 
