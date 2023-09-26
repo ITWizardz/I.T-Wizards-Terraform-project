@@ -6,6 +6,6 @@ provider "aws" {
 }
 
 provider "vault" {
-  address = "https://vault-cluster-public-vault-98265e65.ea7c76de.z1.hashicorp.cloud:8200"
+  address = var.vault_address
   token   = var.vault_token
 }
