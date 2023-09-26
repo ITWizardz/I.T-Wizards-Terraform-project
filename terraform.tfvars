@@ -7,6 +7,8 @@ secret_key    = ""
 
 webapp_repo = "https://github.com/ITWizardz/test-webapp.git"
 
+vault_token = "hvs.CAESIOIt09fhSTpNU71tbqDlvf27ux9_d9IDp_9K8NWvOi7_GicKImh2cy42YlQyUjMwNzVVYURhMU1ieDgwalFEVjYuRkNnMWEQ4gE"
+
 db_allocated_storage = 20            # Change as needed
 db_instance_type     = "db.t2.micro" # Change as needed
 db_name              = "testdb"

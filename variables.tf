@@ -3,6 +3,11 @@ variable "webapp_repo"{
   type = string
 }
 
+variable "vault_token"{
+  description = "Vault token"
+  type = string
+}
+
 variable "secret_key" {
   description = "value"
   type        = string
