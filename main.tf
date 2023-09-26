@@ -9,10 +9,11 @@ terraform {
     organization = "WMCA-2023"
 
     workspaces {
-      name = "Aws_approval_project"
+      name = "learn-terraform-github-aws"
     }
   }
 }
+
 
 resource "aws_security_group" "web_server_sg" {
   name        = "web_server_sg"
@@ -37,6 +38,7 @@ resource "aws_security_group" "web_server_sg" {
     ipv6_cidr_blocks = ["::/0"]
   }
 }
+
 
 # Define output for the RDS endpoint
 /*output "mysql_endpoint" {
