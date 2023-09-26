@@ -22,7 +22,7 @@ resource "aws_security_group" "web_server_sg" {
   dynamic "ingress" {
     for_each = var.ports_list
     content {
-      description = ingress.value.nam
+      description = ingress.value.name
       from_port   = ingress.value.port
       to_port     = ingress.value.port
       protocol    = ingress.value.protocol
