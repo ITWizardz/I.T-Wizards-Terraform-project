@@ -16,16 +16,8 @@ jobs:
     - name: Set up Terraform Cloud
       run: |
         echo "TERRAFORM_CLOUD_TOKEN=${{ secrets.TERRAFORM_CLOUD_TOKEN }}" >> $GITHUB_ENV
-        terraform init -reconfigure -input=false
+        terraform init
 
     - name: Terraform Apply
       run: |
         terraform apply --auto-approve
-
-    - name: Terraform Plan (optional)
-      run: |
-        terraform plan
-
-    - name: Terraform Destroy (optional)
-      run: |
-        terraform destroy --auto-approve
