@@ -16,6 +16,8 @@ resource "aws_instance" "web_server" {
     host = self.public_ip
 
   }
+
+  
   provisioner "remote-exec" {
 
     inline = [
@@ -30,7 +32,10 @@ resource "aws_instance" "web_server" {
       "sudo systemctl enable tomcat9",
 
       "sudo yum install -y git",
-      "sudo git clone ${var.webapp_repo} /var/lib/tomcat9/webapps"
+      "sudo git clone ${var.webapp_repo} /var/lib/tomcat9/webapps",
+        
+      "sudo yum install -y maven",
+      "mvn spring-boot:run"
 
     ]
   }
