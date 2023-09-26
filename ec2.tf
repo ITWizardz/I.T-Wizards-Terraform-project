@@ -26,8 +26,6 @@ resource "aws_instance" "web_server" {
       "sudo yum update -y",
       "sudo yum upgrade -y",
 
-
-
       # Java 17 install
       "wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.rpm",
       "sudo yum -y install ./jdk-17_linux-x64_bin.rpm",
@@ -46,7 +44,6 @@ resource "aws_instance" "web_server" {
 
       "cd test-webapp",
       "nohop mvn spring-boot:run"
-
     ]
   }
 
