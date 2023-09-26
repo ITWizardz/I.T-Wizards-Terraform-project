@@ -1,81 +1,31 @@
-name: Deploy Web App
-
- 
+name: Terraform Cloud Deployment
 
 on:
-
-    push:
-
-        branches:
-
-            - main
-
-        paths-ignore:
-
-            - '.github/workflows/*'
-
-    workflow_dispatch:
-
- 
+  push:
+    branches:
+      - main
 
 jobs:
-
-  deploy_app:
-
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Checkout code
+    - name: Set up Terraform Cloud
+      run: |
+        echo "TERRAFORM_CLOUD_TOKEN=${{ secrets.TERRAFORM_CLOUD_TOKEN }}" >> $GITHUB_ENV
+        terraform init -reconfigure -input=false
 
-        uses: actions/checkout@v2
+    - name: Terraform Apply
+      run: |
+        terraform apply -auto-approve
 
- 
+    - name: Terraform Plan (optional)
+      run: |
+        terraform plan
 
-      - name: Deploy container
-
-        run: |
-
-          docker image pull nginx
-
-          docker image ls
-
-          docker container run -d -p 8080:80 nginx
-
-          sleep 5  # Wait for the container to start
-
- 
-
-      - name: Test deploy
-
-        run: |
-
-          python3 -m pip install requests
-
-          python3 -c "import requests; r=requests.get('http://localhost:8080'); print(r.status_code)"
-
-          curl -s localhost:8080
-
- 
-
-  test_env:
-
-    needs: deploy_app
-
-    runs-on: ubuntu-latest
-
-    steps:
-
-      - name: Checkout code
-
-        uses: actions/checkout@v2
-
- 
-
-      - name: Investigate env
-
-        run: |
-
-          pwd
-
-          ls -lart
+    - name: Terraform Destroy (optional)
+      run: |
+        terraform destroy -auto-approve
