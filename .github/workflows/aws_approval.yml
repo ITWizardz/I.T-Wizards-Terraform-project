@@ -1,0 +1,81 @@
+name: Deploy Web App
+
+ 
+
+on:
+
+    push:
+
+        branches:
+
+            - main
+
+        paths-ignore:
+
+            - '.github/workflows/*'
+
+    workflow_dispatch:
+
+ 
+
+jobs:
+
+  deploy_app:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout code
+
+        uses: actions/checkout@v2
+
+ 
+
+      - name: Deploy container
+
+        run: |
+
+          docker image pull nginx
+
+          docker image ls
+
+          docker container run -d -p 8080:80 nginx
+
+          sleep 5  # Wait for the container to start
+
+ 
+
+      - name: Test deploy
+
+        run: |
+
+          python3 -m pip install requests
+
+          python3 -c "import requests; r=requests.get('http://localhost:8080'); print(r.status_code)"
+
+          curl -s localhost:8080
+
+ 
+
+  test_env:
+
+    needs: deploy_app
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout code
+
+        uses: actions/checkout@v2
+
+ 
+
+      - name: Investigate env
+
+        run: |
+
+          pwd
+
+          ls -lart
