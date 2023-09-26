@@ -22,21 +22,28 @@ resource "aws_instance" "web_server" {
 
     inline = [
 
+      # Update & Upgrade package library
       "sudo yum update -y",
-
       "sudo yum upgrade -y",
 
-      "sudo yum install openjdk-17-jdk", # openjdk-17-jre
-      "sudo yum install tomcat9",
-      "sudo systemctl start tomcat9",
-      "sudo systemctl enable tomcat9",
+      # Java 17 install
+      "wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.rpm",
+      "sudo yum -y install ./jdk-17_linux-x64_bin.rpm",
 
-      "sudo yum install -y git",
-      "sudo git clone ${var.webapp_repo} /var/lib/tomcat9/webapps",
-        
+      # Install and run Maven
       "sudo yum install -y maven",
-      "mvn spring-boot:run"
 
+      # Install git and clone the webapp repo
+      "sudo yum install -y git",
+      "cd /var/lib/tomcat9/webapps",
+      "sudo git clone ${var.webapp_repo}",
+      
+      # Fix permissions for Maven
+      "sudo chown -R ${aws_instance.web_server.connection.user} test-webapp/target",
+      "sudo chmod -R u+w test-webapp/target",
+
+      "cd test-webapp",
+      "nohop mvn spring-boot:run"
     ]
   }
 
