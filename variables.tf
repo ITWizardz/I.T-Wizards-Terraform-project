@@ -13,7 +13,7 @@ variable "vault_token"{
   type = string
 }
 
-variable "secret_key" {
+/*variable "secret_key" {
   description = "value"
   type        = string
 }
@@ -21,7 +21,7 @@ variable "secret_key" {
 variable "access_key" {
   description = "value"
   type        = string
-}
+}*/
 
 variable "is_dev" {
   description = "Is this a dev build? (yes/no)"
