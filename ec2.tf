@@ -35,13 +35,13 @@ resource "aws_instance" "web_server" {
 
       # Install git and clone the webapp repo
       "sudo yum install -y git",
-      "cd /var/lib/tomcat9/webapps",
       "sudo git clone ${var.webapp_repo}",
-      
+
       # Fix permissions for Maven
       "sudo chown -R ec2-user test-webapp/target",
       "sudo chmod -R u+w test-webapp/target",
 
+      # Run spring-boot through maven
       "cd test-webapp",
       "nohop mvn spring-boot:run"
     ]
