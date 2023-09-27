@@ -11,12 +11,11 @@ resource "aws_instance" "web_server" {
     type = "ssh"
 
     user = "ec2-user"
-    # private_key = file("/Users/binoymaster/Downloads/ssh_approval/aws_docshare.pem")#data.vault_generic_secret.secret.data["ssh_access"]
+    
     private_key = data.vault_generic_secret.secret.data["ssh_key_value"]
     host = self.public_ip
 
   }
-
 
   provisioner "remote-exec" {
 
