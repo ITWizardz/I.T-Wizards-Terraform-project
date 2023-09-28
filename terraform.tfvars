@@ -6,7 +6,7 @@ instance_type = "t2.micro"              # Change to your desired instance type
 webapp_repo = "https://github.com/ITWizardz/test-webapp.git"
 
 vault_address = "https://vault-cluster-public-vault-98265e65.ea7c76de.z1.hashicorp.cloud:8200"
-vault_token = "hvs.CAESIDuDruDP2yDTUtWXBSrX7r8slREz6C5WW9iamxokoE8lGigKImh2cy4wVjdMTnJpNzExVmpJd0xTdlB5RWtpRG4uRkNnMWEQtKQB"
+vault_token = "hvs.CAESIPgc7ep8wzXqTk2hzJZI7kpNmvYuKF-oawEVWQHHTASSGigKImh2cy5pOGw4VUROa2prRDZLbHRTTVhOZ3g3dnIuRkNnMWEQ2dgB"
 
 db_allocated_storage = 20            # Change as needed
 db_instance_type     = "db.t2.micro" # Change as needed
