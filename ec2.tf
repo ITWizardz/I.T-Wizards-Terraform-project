@@ -42,7 +42,7 @@ resource "aws_instance" "web_server" {
 
       # Run spring-boot through maven
       "cd test-webapp",
-      "nohup mvn spring-boot:run"
+      "screen -dmS mvn mvn spring-boot:run"
     ]
   }
 
